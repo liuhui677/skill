@@ -10,10 +10,14 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "scssTojs": "node ./scssTojs.js"
   },
   "dependencies": {
+    "element-plus": "^2.8.1",
     "pinia": "^2.1.7",
+    "sass": "^1.77.4",
+    "scss": "^0.2.4",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },
