@@ -24,18 +24,28 @@ const isIntersect = computed(() => {
     const height2 = box2.value?.offsetHeight
     const width1 = box1.value?.offsetWidth
     const width2 = box2.value?.offsetWidth
-    if (((position2.value.left > position1.value.left && position2.value.left < position1.value.left + width1) || (position2.value.left + width2 > position1.value.left && position2.value.left + width2 < position1.value.left + width1))
-        && ((position2.value.top > position1.value.top && position2.value.top < position1.value.top + height1) || (position2.value.top + height2 > position1.value.top && position2.value.top + height2 < position1.value.top + width1))
+    if ((
+        (position2.value.left > position1.value.left && position2.value.left < position1.value.left + width1) || 
+        (position2.value.left + width2 > position1.value.left && position2.value.left + width2 < position1.value.left + width1))
+        &&
+         (
+            (position2.value.top > position1.value.top && position2.value.top < position1.value.top + height1) || 
+            (position2.value.top + height2 > position1.value.top && position2.value.top + height2 < position1.value.top + height1)) ||
+            (
+                ((position1.value.left  > position2.value.left && position1.value.left  < position2.value.left + width2) || (position1.value.left + width1  > position2.value.left && position1.value.left + width1 < position2.value.left + width2)) &&
+                 ((position1.value.top + height1  < position2.value.top + height2 && position1.value.top + height1  > position2.value.top) || (position1.value.top   < position2.value.top + height2 && position1.value.top   > position2.value.top)))
     ) {
         return true
     }
     return false
 })
 const dragstart1 = (event: DragEvent) => {
+    // eslint-disable-next-line no-debugger
     position.value.top = event.offsetY
     position.value.left = event.offsetX
 }
 const dragend1 = (event: DragEvent) => {
+    // eslint-disable-next-line no-debugger
     position1.value.top = event.clientY - position.value.top
     position1.value.left = event.clientX - position.value.left
 }
@@ -63,9 +73,10 @@ const dragend2 = (event: DragEvent) => {
 
     .box2 {
         position: absolute;
-        height: 200px;
+        height: 500px;
         width: 300px;
         background-color: green;
+        opacity: 0.7;
     }
 
 }
